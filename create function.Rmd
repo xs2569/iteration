@@ -53,7 +53,7 @@ z_score = function(x) {
   }
   
   if(length(x)<5){
-    stop(you need at least five numbers to compute z score)
+    stop("you need at least five numbers to compute z score")
   } 
   
   z = (x - mean(x)) / sd(x)
@@ -66,7 +66,25 @@ z_score(x = x_vec)
 ```
 ```{r}
 z_score(x = 3)
-z_score(x = c("my" "name"))
+z_score(x = c("my", "name"))
 
 ```
+
+```{r}
+sim_mean_sd = function(n, mu = 2, sigma = 3) {
+  
+  sim_data = tibble(
+    x = rnorm(n, mean = mu, sd = sigma),
+  )
+  
+  sim_data |> 
+    summarize(
+      mu_hat = mean(x),
+      sigma_hat = sd(x)
+    )
+}
+
+sim_mean_sd(x_vec)
+```
+
 
